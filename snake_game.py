@@ -12,18 +12,26 @@ height = 400
 width = 600
 pixel_size = 10
 direction = "right"
+speed = 0.05
 
 # key press
 def keydown(key):
-    global direction
+    global direction, speed
     if key==simplegui.KEY_MAP["down"] and (direction == 'left' or direction == 'right'):
         direction = 'up'
-    if key==simplegui.KEY_MAP["up"] and (direction == 'left' or direction == 'right'):
+    elif key==simplegui.KEY_MAP["up"] and (direction == 'left' or direction == 'right'):
         direction = 'down'
-    if key==simplegui.KEY_MAP['left'] and (direction == 'down' or direction == 'up'):
+    elif key==simplegui.KEY_MAP['left'] and (direction == 'down' or direction == 'up'):
         direction = 'left'
-    if key==simplegui.KEY_MAP['right'] and (direction == 'down' or direction == 'up'):
+    elif key==simplegui.KEY_MAP['right'] and (direction == 'down' or direction == 'up'):
         direction = 'right'
+    elif key==simplegui.KEY_MAP['s'] :
+        speed = 0.05
+    elif key==simplegui.KEY_MAP['m'] :
+        speed = 0.03
+    elif key==simplegui.KEY_MAP['h'] :
+        speed = 0.01
+
 
 # check if new food is at empty spot
 def check_position(x,y):
@@ -62,7 +70,7 @@ def new_game():
     direction = 'right'
 
 def draw(canvas):
-    global queue_x, queue_y, direction, height, width, pixel_size, food_x, food_y
+    global queue_x, queue_y, direction, height, width, pixel_size, food_x, food_y, speed
     
     # move ahead
     if direction == 'right':    
@@ -121,7 +129,7 @@ def draw(canvas):
         print (len(queue_x))
         new_game()
 
-    time.sleep(0.05)
+    time.sleep(speed)
 
     # draw snake and food
     canvas.draw_polygon([[food_x - pixel_size/2, food_y - pixel_size/2],[food_x + pixel_size/2, food_y - pixel_size/2],[food_x + pixel_size/2 , food_y + pixel_size/2],[food_x - pixel_size/2 ,food_y + pixel_size/2]],1,"WHITE","WHITE")
