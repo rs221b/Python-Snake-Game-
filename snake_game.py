@@ -63,7 +63,7 @@ def new_food():
         food_y = int(y)
 
 def new_game():
-    global queue_x, queue_y, direction, height, width, pixel_size, food_x, food_y
+    global queue_x, queue_y, direction, height, width, pixel_size, food_x, food_y, score
     queue_x = [400, 395, 390, 385, 380, 375, 370, 365, 360, 355, 350]
     queue_y = [250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250]
     food_x = 100
