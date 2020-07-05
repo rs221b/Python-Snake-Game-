@@ -13,6 +13,7 @@ width = 600
 pixel_size = 10
 direction = "right"
 speed = 0.05
+score = 0
 
 # key press
 def keydown(key):
@@ -67,10 +68,11 @@ def new_game():
     queue_y = [250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250]
     food_x = 100
     food_y = 100
+    score = 0
     direction = 'right'
 
 def draw(canvas):
-    global queue_x, queue_y, direction, height, width, pixel_size, food_x, food_y, speed
+    global queue_x, queue_y, direction, height, width, pixel_size, food_x, food_y, speed, score
     
     # move ahead
     if direction == 'right':    
@@ -78,6 +80,7 @@ def draw(canvas):
         queue_y.insert(0, queue_y[0])
         if queue_x[0] == food_x and queue_y[0] == food_y:
             new_food()
+            score+=1
         else:
             queue_x.pop(len(queue_x)-1)
             queue_y.pop(len(queue_y)-1)
@@ -86,6 +89,7 @@ def draw(canvas):
         queue_y.insert(0, queue_y[0])
         if queue_x[0] == food_x and queue_y[0] == food_y:
             new_food()
+            score+=1
         else:
             queue_x.pop(len(queue_x)-1)
             queue_y.pop(len(queue_y)-1)
@@ -94,6 +98,7 @@ def draw(canvas):
         queue_y.insert(0, queue_y[0] + pixel_size)
         if queue_x[0] == food_x and queue_y[0] == food_y:
             new_food()
+            score+=1
         else:
             queue_x.pop(len(queue_x)-1)
             queue_y.pop(len(queue_y)-1)
@@ -102,6 +107,7 @@ def draw(canvas):
         queue_y.insert(0, queue_y[0] - pixel_size)
         if queue_x[0] == food_x and queue_y[0] == food_y:
             new_food()
+            score+=1
         else:
             queue_x.pop(len(queue_x)-1)
             queue_y.pop(len(queue_y)-1)
@@ -132,6 +138,7 @@ def draw(canvas):
     time.sleep(speed)
 
     # draw snake and food
+    canvas.draw_text("Score: " + str(score),[width/4,height/2],100,'grey')
     canvas.draw_polygon([[food_x - pixel_size/2, food_y - pixel_size/2],[food_x + pixel_size/2, food_y - pixel_size/2],[food_x + pixel_size/2 , food_y + pixel_size/2],[food_x - pixel_size/2 ,food_y + pixel_size/2]],1,"WHITE","WHITE")
     for (a,b) in zip(queue_x, queue_y):
         canvas.draw_polygon([[a - pixel_size/2, b - pixel_size/2],[a + pixel_size/2, b - pixel_size/2],[a + pixel_size/2 , b + pixel_size/2],[a - pixel_size/2 ,b + pixel_size/2]],1,"MAGENTA","MAGENTA")
