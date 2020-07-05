@@ -57,7 +57,7 @@ def new_food():
     y = int(y/pixel_size) * pixel_size
     food_at_empty_spot = check_position(x,y)
     if food_at_empty_spot == False:
-        food_x, food_y = new_food()
+        new_food()
     else :
         food_x = int(x)
         food_y = int(y)
