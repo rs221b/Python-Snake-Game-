@@ -139,7 +139,7 @@ def draw(canvas):
 
     # draw snake and food
     canvas.draw_text("Score: " + str(score),[width/4,height/2],100,'grey')
-    canvas.draw_polygon([[food_x - pixel_size/2, food_y - pixel_size/2],[food_x + pixel_size/2, food_y - pixel_size/2],[food_x + pixel_size/2 , food_y + pixel_size/2],[food_x - pixel_size/2 ,food_y + pixel_size/2]],1,"WHITE","WHITE")
+    canvas.draw_polygon([[food_x - pixel_size/2, food_y - pixel_size/2],[food_x + pixel_size/2, food_y - pixel_size/2],[food_x + pixel_size/2 , food_y + pixel_size/2],[food_x - pixel_size/2 ,food_y + pixel_size/2]],1,"CYAN","CYAN")
     for (a,b) in zip(queue_x, queue_y):
         canvas.draw_polygon([[a - pixel_size/2, b - pixel_size/2],[a + pixel_size/2, b - pixel_size/2],[a + pixel_size/2 , b + pixel_size/2],[a - pixel_size/2 ,b + pixel_size/2]],1,"MAGENTA","MAGENTA")
 
